@@ -1,3 +1,6 @@
 .vscode
 env/
 node_modules/*
+__pycache__
+.*pyo
+.*pyc
