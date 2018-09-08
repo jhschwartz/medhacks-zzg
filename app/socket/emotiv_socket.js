@@ -53,10 +53,10 @@ window.onload = function() {
       'method': 'authorize',
       'id': ID_AUTHORIZE,
       'params': {
-        'username': 'medhacks',
-        'password': 'betterThanHophacks',
-        'client_id': 'f9joicKJ1goieO06smlnTb3sBZq7MryqzWWO3Xq8',
-        'client_secret': 'Yzu2HfH72EvkvN6ojB6wAftSNpp9lqiICsRyS6x2o1YMJEv2VFnF2yfjr6y1hWmMBUfnkojdP1QOWR4ClMcaMxfNxNTFd5rW6cGRBDFf8BkXczvDZvRDQezaNnS9OuyD'
+        'username': username,
+        'password': password,
+        'client_id': client_id,
+        'client_secret': client_secret
       }
     }))
   }

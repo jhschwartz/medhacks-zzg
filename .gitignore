@@ -4,3 +4,5 @@ node_modules/*
 __pycache__
 .*pyo
 .*pyc
+.DS_Store
+emotiv_config.js
