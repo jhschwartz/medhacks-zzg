@@ -1,5 +1,7 @@
 var token = ''
+var headset_id = ''
 
+// TODO: begin when website says so, not on load
 window.onload = function() {
 
   // Get references to elements on the page.
@@ -14,6 +16,9 @@ window.onload = function() {
   const ID_AUTHORIZE = 2
   const ID_LICENSE_ACCEPT = 3
   const ID_QUERY_HEADSETS = 4
+  const ID_CREATE_SESSION = 5
+  const ID_QUERY_SESSIONS = 6
+  const ID_SUBSCRIBE = 7
   const ID_OTHER = 999
 
   // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
@@ -38,6 +43,57 @@ window.onload = function() {
   // connect socket
   var socket = new WebSocket('wss://emotivcortex.com:54321')
 
+  socket.onmessage = function(event) {
+    var data = JSON.parse(event.data)
+    switch (data['id']) {
+      case ID_GET_USER_LOGIN:
+        console.log('received user login')
+        console.log(data)
+        authorize()
+        break
+      case ID_AUTHORIZE:
+        console.log('received authorize')
+        console.log(data)
+        token = data['result']['_auth']
+        license(token)
+        break
+      case ID_LICENSE_ACCEPT:
+        console.log('received license')
+        console.log(data)
+        query_headsets()
+        break
+      case ID_QUERY_HEADSETS:
+        console.log('received query headsets')
+        console.log(data)
+        headset_id = data['result'][0]['id']
+        console.log(headset_id)
+        create_session(headset_id)
+        break
+      case ID_CREATE_SESSION:
+        console.log('received create session')
+        console.log(data)
+        query_sessions()
+        break
+      case ID_QUERY_SESSIONS:
+        console.log('received query session')
+        console.log(data)
+        subscribe()
+        break
+      case ID_SUBSCRIBE:
+        console.log('received subscribe')
+        console.log(data)
+        handle_message(data)
+        break
+      case ID_OTHER:
+        console.log('received other')
+        handle_message(data)
+        break
+      default:
+        // default no id so we are collecting data
+        process_data(data)
+    }
+  }
+
   // send user login
   waitForSocketConnection(socket, function() {
     socket.send(JSON.stringify({
@@ -53,10 +109,10 @@ window.onload = function() {
       'method': 'authorize',
       'id': ID_AUTHORIZE,
       'params': {
-        'username': 'medhacks',
-        'password': 'betterThanHophacks',
-        'client_id': 'f9joicKJ1goieO06smlnTb3sBZq7MryqzWWO3Xq8',
-        'client_secret': 'Yzu2HfH72EvkvN6ojB6wAftSNpp9lqiICsRyS6x2o1YMJEv2VFnF2yfjr6y1hWmMBUfnkojdP1QOWR4ClMcaMxfNxNTFd5rW6cGRBDFf8BkXczvDZvRDQezaNnS9OuyD'
+        'username': username,
+        'password': password,
+        'client_id': client_id,
+        'client_secret': client_secret
       }
     }))
   }
@@ -84,45 +140,48 @@ window.onload = function() {
     }))
   }
 
+  function create_session(headset_id) {
+    socket.send(JSON.stringify({
+      'jsonrpc': '2.0',
+      'method': 'createSession',
+      'id': ID_CREATE_SESSION,
+      'params': {
+        '_auth': token,
+        'headset': headset_id,
+        'status': 'open'
+      }
+    }))
+  }
+
+  function query_sessions() {
+    socket.send(JSON.stringify({
+      'jsonrpc': '2.0',
+      'method': 'querySessions',
+      'id': ID_QUERY_SESSIONS,
+      'params': {
+        '_auth': token
+      }
+    }))
+  }
+
+  function subscribe() {
+    socket.send(JSON.stringify({
+      'jsonrpc': '2.0',
+      'method': 'subscribe',
+      'id': ID_SUBSCRIBE,
+      'params': {
+        '_auth': token,
+        'streams': ['pow']
+      }
+    }))
+  }
+
   var handle_message = data => {
-    // something
     console.log(data)
   }
 
-  socket.onmessage = function(event) {
-    var data = JSON.parse(event.data)
-
-    switch (data['id']) {
-      case ID_GET_USER_LOGIN:
-        console.log('received user login')
-        console.log(data)
-        authorize()
-        break
-      case ID_AUTHORIZE:
-        console.log('received authorize')
-        console.log(data)
-        token = data['result']['_auth']
-        license(token)
-        break
-      case ID_LICENSE_ACCEPT:
-        console.log('received license')
-        console.log(data)
-        query_headsets()
-        break
-      case ID_QUERY_HEADSETS:
-        console.log('received query headsets')
-        console.log(data)
-        handle_message(data)
-        break
-      case ID_OTHER:
-        console.log('received other')
-        console.log(data)
-        handle_message(data)
-        break
-      default:
-        throw Error('Unexpected message ID')
-    }
+  var process_data = data => {
+    pow = data['pow']
+    // TODO: send to website
   }
-  
-
 }
