@@ -13,8 +13,10 @@ window.onload = function() {
   const ID_GET_USER_LOGIN = 1
   const ID_AUTHORIZE = 2
   const ID_LICENSE_ACCEPT = 3
-  const ID_OTHER = 4
+  const ID_QUERY_HEADSETS = 4
+  const ID_OTHER = 999
 
+  // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
   function waitForSocketConnection(socket, callback) {
     setTimeout(
       function () {
@@ -71,6 +73,17 @@ window.onload = function() {
     }))
   }
 
+  function query_headsets() {
+    socket.send(JSON.stringify({
+      'jsonrpc': '2.0',
+      'method': 'queryHeadsets',
+      'id': ID_QUERY_HEADSETS,
+      'params': {
+        'wilcard': 'EPOCPLUS-*'
+      }
+    }))
+  }
+
   var handle_message = data => {
     // something
     console.log(data)
@@ -94,6 +107,12 @@ window.onload = function() {
       case ID_LICENSE_ACCEPT:
         console.log('received license')
         console.log(data)
+        query_headsets()
+        break
+      case ID_QUERY_HEADSETS:
+        console.log('received query headsets')
+        console.log(data)
+        handle_message(data)
         break
       case ID_OTHER:
         console.log('received other')
