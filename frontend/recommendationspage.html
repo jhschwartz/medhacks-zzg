@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ZZG Recommendations Page</title>
+  <meta name="description" content="ZZG Recommendations Page">
+  <meta name="author" content="ZZG Makers">
+
+	<link rel="stylesheet" href="css/styles.css">
+
+	<script>
+			var current_page = 'recommendations';
+	</script>
+	<script src="js/recommendations.js"></script>
+</head>
+
+<body onload="fillTxtBoxes()">
+	<div class="center">
+		<h1 class="default_h1 left"> Potential Diagnoses: </h1><br>
+		<p id="diagnoses" class="default_h1 smallTxt"></p>
+		<h1 class="default_h1 left"> Recommendations: </h1><br>
+		<p id="recommendations" class="default_h1 smallTxt"></p>
+		<button class="default_button smallBtn"> <a class="default_a" href="./homepage.html">Complete Session</a> </button>
+	  </div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="../socket/emotiv_config.js" type="text/javascript"></script>
+	<script src="../data_center.js" type="text/javascript"></script>
+	<script src="../socket/emotiv_socket.js" type="text/javascript"></script>
+	<script src="js/motion.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+
+
+.sleep-btn {
+    width: 100%;
+}
+
+.time-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#myVideo {
+    position: fixed;
+    right: -630px;
+    bottom: -300;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -999;
+}
+
+.content {
+    padding-top: 40px;
+}
+
+.default_h1 {
+    font-size: 36px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    font-family: lato, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+}
+
+.default_a {
+    text-decoration: none;
+    background-color: none;
+    color: white;
+}
+.default_a:hover{
+    text-decoration: none;
+	color: white;
+}
+
+.default_button {
+    background-color: #7F98FF;
+	border: 2px solid white;
+	border-radius: 12px;
+	color: white;
+    font-size: 36px;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-family: lato, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    transition-duration: 0.4s;
+}
+
+.default_button:hover{
+	opacity: 0.5;
+	color: black;
+}
+
+/* CSS for Homepage (superimpose text and button on sky image)*/
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.container img {
+	width: 100%;
+	height: auto;
+}
+
+.centerTxt {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+}
+
+.centerBtn {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+body {
+    background-color: #7F98FF;
+    margin: 0;
+}
+
+.left{
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 0px;
+    font-size: 28px;
+}
+
+.center {
+    text-align: center;
+}
+
+.smallTxt {
+	border: 2px solid white;
+	margin: 0px 50px 20px 50px;
+	padding: 20px 40px;
+    text-align: left;
+    font-size: 22px;
+}
+
+.smallBtn {
+    font-size: 28px;
+}

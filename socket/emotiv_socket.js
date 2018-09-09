@@ -1,27 +1,26 @@
 var token = ''
 var headset_id = ''
 
+// Get references to elements on the page.
+var form = document.getElementById('message-form')
+var messageField = document.getElementById('message')
+var messagesList = document.getElementById('messages')
+var socketStatus = document.getElementById('status')
+var closeBtn = document.getElementById('close')
+
+// Create a new WebSocket.
+const ID_GET_USER_LOGIN = 1
+const ID_AUTHORIZE = 2
+const ID_LICENSE_ACCEPT = 3
+const ID_QUERY_HEADSETS = 4
+const ID_CREATE_SESSION = 5
+const ID_UPDATE_SESSION = 6
+const ID_QUERY_SESSIONS = 7
+const ID_SUBSCRIBE = 8
+const ID_OTHER = 999
+
 // TODO: begin when website says so, not on load
-window.onload = function() {
-
-  // Get references to elements on the page.
-  var form = document.getElementById('message-form')
-  var messageField = document.getElementById('message')
-  var messagesList = document.getElementById('messages')
-  var socketStatus = document.getElementById('status')
-  var closeBtn = document.getElementById('close')
-
-  // Create a new WebSocket.
-  const ID_GET_USER_LOGIN = 1
-  const ID_AUTHORIZE = 2
-  const ID_LICENSE_ACCEPT = 3
-  const ID_QUERY_HEADSETS = 4
-  const ID_CREATE_SESSION = 5
-  const ID_UPDATE_SESSION = 6
-  const ID_QUERY_SESSIONS = 7
-  const ID_SUBSCRIBE = 8
-  const ID_OTHER = 999
-
+var run_socket = (socket, streams) => {
   // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
   function waitForSocketConnection(socket, callback) {
     setTimeout(
@@ -41,8 +40,8 @@ window.onload = function() {
       }, 5) // wait 5 milisecond for the connection...
   }
 
-  // connect socket
-  var socket = new WebSocket('wss://emotivcortex.com:54321')
+  // // connect socket
+  // var socket = new WebSocket('wss://emotivcortex.com:54321')
 
   socket.onmessage = function(event) {
     var data = JSON.parse(event.data)
@@ -79,6 +78,7 @@ window.onload = function() {
         console.log('received update session')
         console.log(data)
         query_sessions()
+        break
       case ID_QUERY_SESSIONS:
         console.log('received query session')
         console.log(data)
@@ -188,7 +188,7 @@ window.onload = function() {
       'id': ID_SUBSCRIBE,
       'params': {
         '_auth': token,
-        'streams': ['pow', 'eeg']
+        'streams': streams
       }
     }))
   }
@@ -198,13 +198,33 @@ window.onload = function() {
   }
 
   var process_data = data => {
-
-    if (data['pow'] != undefined && data != undefined) {
-      console.log(data)
+    // pow: band data
+    // using this to interpret sleep
+    // needs to be stored in sets for analysis
+    if (data['pow'] != undefined) {
+      var date = new Date()
+      data['time'] = date.getTime()
+      pow_data.push(data)
+      update_pow(data)
     }
 
-    //if (data['eeg'] != undefined && data != undefined) {
-    //  console.log(data)
-    //}    
+    // met: health metrics (stress, excitement, etc)
+    // using this to associate with sleep
+    // needs to be stored in sets for analysis
+    if (data['met'] != undefined && data != undefined) {
+      met_data.push(data)
+      update_met(data)
+    }
+
+    // mot: motion data
+    // using this to look pretty/stand in for our lack of real-time eeg
+    // needs to trigger an update event all the time
+    if (data['pow'] != undefined) {
+      update_mot(data)
+    }
+  }
+
+  socket.onclose = function(event) {
+    console.log('socket closed!')
   }
 }

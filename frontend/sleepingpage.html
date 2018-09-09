@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ZZG Sleeping Page</title>
+  <meta name="description" content="ZZG Sleeping Page">
+  <meta name="author" content="ZZG Makers">
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/styles.css">
+	<script>
+			var current_page = 'sleeping';
+	</script>
+
+	<script src="http://mbostock.github.com/d3/d3.v2.js"></script>
+	<style>
+			/* tell the SVG path to be a thin blue line without any area fill */
+            body {
+                background: #293241;
+                opacity: 0.7;
+            }
+            path {
+				stroke: white;
+				stroke-width: 1;
+				fill: none;
+			}
+	</style>
+</head>
+
+<body>
+	<div class="content">
+		<h1 class="default_h1"> Time to Catch Some ZZG's... </h1><br>
+		<div class="row time-row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h2 class="default_h1" id="time">00:00:00</h2>
+				</div>
+				<div class="col-md-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<button class="btn btn-primary btn-lg sleep-btn mx-auto" id="start-sleep-btn"> Start Session </button>
+				<button class="btn btn-secondary btn-lg sleep-btn mx-auto" id="end-sleep-btn" target="./analysispage.html">End Session</button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<p>
+		<div id="graph1" class="aGraph" style="width:1300px; height:300px;"></div>
+		</p>
+		<script src="js/sleepingWave.js"></script>
+	  </div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="../socket/emotiv_config.js" type="text/javascript"></script>
+	<script src="../data_center.js" type="text/javascript"></script>
+	<script src="../socket/emotiv_socket.js" type="text/javascript"></script>
+	<script src="js/motion.js" type="text/javascript"></script>
+	<script src="../vendor/jquery.stopwatch.js" type="text/javascript"></script>
+	<script src="js/sleeping.js" type="text/javascript"></script>
+</body>
+</html>
