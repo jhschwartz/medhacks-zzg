@@ -14,8 +14,9 @@ const ID_AUTHORIZE = 2
 const ID_LICENSE_ACCEPT = 3
 const ID_QUERY_HEADSETS = 4
 const ID_CREATE_SESSION = 5
-const ID_QUERY_SESSIONS = 6
-const ID_SUBSCRIBE = 7
+const ID_UPDATE_SESSION = 6
+const ID_QUERY_SESSIONS = 7
+const ID_SUBSCRIBE = 8
 const ID_OTHER = 999
 
 // TODO: begin when website says so, not on load
@@ -70,6 +71,11 @@ var run_socket = (socket, streams) => {
         break
       case ID_CREATE_SESSION:
         console.log('received create session')
+        console.log(data)
+        update_session()
+        break
+      case ID_UPDATE_SESSION:
+        console.log('received update session')
         console.log(data)
         query_sessions()
         break
@@ -149,6 +155,18 @@ var run_socket = (socket, streams) => {
         'headset': headset_id,
         'status': 'open'
       }
+    }))
+  }
+
+  function update_session() {
+    socket.send(JSON.stringify({
+      "jsonrpc": "2.0",
+      "method": "updateSession",
+      "params": {
+        "_auth": token,
+        "status": "active"
+      },
+      "id": ID_UPDATE_SESSION
     }))
   }
 
