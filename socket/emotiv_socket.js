@@ -1,28 +1,25 @@
 var token = ''
 var headset_id = ''
 
+// Get references to elements on the page.
+var form = document.getElementById('message-form')
+var messageField = document.getElementById('message')
+var messagesList = document.getElementById('messages')
+var socketStatus = document.getElementById('status')
+var closeBtn = document.getElementById('close')
+
+// Create a new WebSocket.
+const ID_GET_USER_LOGIN = 1
+const ID_AUTHORIZE = 2
+const ID_LICENSE_ACCEPT = 3
+const ID_QUERY_HEADSETS = 4
+const ID_CREATE_SESSION = 5
+const ID_QUERY_SESSIONS = 6
+const ID_SUBSCRIBE = 7
+const ID_OTHER = 999
+
 // TODO: begin when website says so, not on load
-window.onload = function() {
-
-  // Get references to elements on the page.
-  var form = document.getElementById('message-form')
-  var messageField = document.getElementById('message')
-  var messagesList = document.getElementById('messages')
-  var socketStatus = document.getElementById('status')
-  var closeBtn = document.getElementById('close')
-
-  // Create a new WebSocket.
-  const ID_GET_USER_LOGIN = 1
-  const ID_AUTHORIZE = 2
-  const ID_LICENSE_ACCEPT = 3
-  const ID_QUERY_HEADSETS = 4
-  const ID_CREATE_SESSION = 5
-  const ID_QUERY_SESSIONS = 6
-  const ID_SUBSCRIBE = 7
-  const ID_OTHER = 999
-
-  const streams = ['met', 'pow', 'mot']
-
+var run_socket = (socket, streams) => {
   // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
   function waitForSocketConnection(socket, callback) {
     setTimeout(
@@ -42,8 +39,8 @@ window.onload = function() {
       }, 5) // wait 5 milisecond for the connection...
   }
 
-  // connect socket
-  var socket = new WebSocket('wss://emotivcortex.com:54321')
+  // // connect socket
+  // var socket = new WebSocket('wss://emotivcortex.com:54321')
 
   socket.onmessage = function(event) {
     var data = JSON.parse(event.data)
@@ -203,5 +200,9 @@ window.onload = function() {
     // using this to look pretty/stand in for our lack of real-time eeg
     // needs to trigger an update event all the time
     update_mot(mot)
+  }
+
+  socket.onclose = function(event) {
+    console.log('socket closed!')
   }
 }

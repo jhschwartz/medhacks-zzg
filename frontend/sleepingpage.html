@@ -8,17 +8,26 @@
   <meta name="description" content="ZZG Sleeping Page">
   <meta name="author" content="ZZG Makers">
 
-  <link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/styles.css">
+	
+	<script>
+			var current_page = 'sleeping';
+	</script>
 
 </head>
 
 <body>
 	<div>
-		<h> Time Elapsed: </h><br>
-		<h> Fancy D3 Page </h><br>
-		<button> <a href="./homepage.html">Restart Session</a> </button>
-		<button> <a href="./analysispage.html">End Session</a> </button>
-  	</div>
-	<script src="js/sleeping.js"></script>
+		<h1> Time Elapsed: </h1><br>
+		<h1> Fancy D3 Page </h1><br>
+		<button class="sleep-btn" id="start-sleep-btn"> Start Session </button>
+		<button class="sleep-btn" id="end-sleep-btn">End Session</button>
+	  </div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="../socket/emotiv_config.js" type="text/javascript"></script>
+	<script src="../data_center.js" type="text/javascript"></script>
+	<script src="../socket/emotiv_socket.js" type="text/javascript"></script>
+	<script src="js/motion.js" type="text/javascript"></script>
+	<script src="js/sleeping.js" type="text/javascript"></script>
 </body>
 </html>
