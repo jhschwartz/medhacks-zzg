@@ -19,3 +19,62 @@
 .content {
     padding-top: 40px;
 }
+
+h1 {
+    font-size: 36px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    font-family: "Avenir Next", serif;
+}
+
+a {
+    text-decoration: none;
+    background-color: none;
+    color: white;
+}
+
+button {
+    background-color: #7F98FF;
+	border: 2px solid white;
+	border-radius: 12px;
+	color: white;
+    font-size: 36px;
+    padding: 20px 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Avenir Next", serif;
+    transition-duration: 0.4s;
+}
+
+button:hover{
+	opacity: 0.5;
+	color: black;
+}
+
+/* CSS for Homepage (superimpose text and button on sky image)*/
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.container img {
+	width: 100%;
+	height: auto;
+}
+
+.centerTxt {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+}
+
+.btn {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
