@@ -21,6 +21,8 @@ window.onload = function() {
   const ID_SUBSCRIBE = 7
   const ID_OTHER = 999
 
+  const streams = ['met', 'pow', 'mot']
+
   // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
   function waitForSocketConnection(socket, callback) {
     setTimeout(
@@ -171,7 +173,7 @@ window.onload = function() {
       'id': ID_SUBSCRIBE,
       'params': {
         '_auth': token,
-        'streams': ['pow']
+        'streams': streams
       }
     }))
   }
@@ -182,6 +184,24 @@ window.onload = function() {
 
   var process_data = data => {
     pow = data['pow']
-    // TODO: send to website
+    met = data['met']
+    mot = data['mot']
+
+    // pow: band data
+    // using this to interpret sleep
+    // needs to be stored in sets for analysis
+    pow_data.push(pow)
+    update_pow(pow)
+
+    // met: health metrics (stress, excitement, etc)
+    // using this to associate with sleep
+    // needs to be stored in sets for analysis
+    met_data.push(met)
+    update_met(met)
+
+    // mot: motion data
+    // using this to look pretty/stand in for our lack of real-time eeg
+    // needs to trigger an update event all the time
+    update_mot(mot)
   }
 }
