@@ -20,6 +20,8 @@ $('#end-sleep-btn').click(function() {
 
     $('#time').stopwatch().stopwatch('stop');
     $('#time').html('00:00:00');
+
+    window.location = $('#end-sleep-btn').attr('target');
 })
 
 $(document).ready(function() {
