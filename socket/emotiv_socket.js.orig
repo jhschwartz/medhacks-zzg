@@ -1,6 +1,28 @@
 var token = ''
 var headset_id = ''
 
+<<<<<<< HEAD:app/socket/emotiv_socket.js
+// TODO: begin when website says so, not on load
+window.onload = function() {
+
+  // Get references to elements on the page.
+  var form = document.getElementById('message-form')
+  var messageField = document.getElementById('message')
+  var messagesList = document.getElementById('messages')
+  var socketStatus = document.getElementById('status')
+  var closeBtn = document.getElementById('close')
+
+  // Create a new WebSocket.
+  const ID_GET_USER_LOGIN = 1
+  const ID_AUTHORIZE = 2
+  const ID_LICENSE_ACCEPT = 3
+  const ID_QUERY_HEADSETS = 4
+  const ID_CREATE_SESSION = 5
+  const ID_UPDATE_SESSION = 6
+  const ID_QUERY_SESSIONS = 7
+  const ID_SUBSCRIBE = 8
+  const ID_OTHER = 999
+=======
 // Get references to elements on the page.
 var form = document.getElementById('message-form')
 var messageField = document.getElementById('message')
@@ -14,10 +36,10 @@ const ID_AUTHORIZE = 2
 const ID_LICENSE_ACCEPT = 3
 const ID_QUERY_HEADSETS = 4
 const ID_CREATE_SESSION = 5
-const ID_UPDATE_SESSION = 6
-const ID_QUERY_SESSIONS = 7
-const ID_SUBSCRIBE = 8
+const ID_QUERY_SESSIONS = 6
+const ID_SUBSCRIBE = 7
 const ID_OTHER = 999
+>>>>>>> master:socket/emotiv_socket.js
 
 // TODO: begin when website says so, not on load
 var run_socket = (socket, streams) => {
@@ -78,7 +100,6 @@ var run_socket = (socket, streams) => {
         console.log('received update session')
         console.log(data)
         query_sessions()
-        break
       case ID_QUERY_SESSIONS:
         console.log('received query session')
         console.log(data)
@@ -188,7 +209,11 @@ var run_socket = (socket, streams) => {
       'id': ID_SUBSCRIBE,
       'params': {
         '_auth': token,
+<<<<<<< HEAD:app/socket/emotiv_socket.js
+        'streams': ['pow', 'eeg']
+=======
         'streams': streams
+>>>>>>> master:socket/emotiv_socket.js
       }
     }))
   }
@@ -198,6 +223,16 @@ var run_socket = (socket, streams) => {
   }
 
   var process_data = data => {
+<<<<<<< HEAD:app/socket/emotiv_socket.js
+
+    if (data['pow'] != undefined && data != undefined) {
+      console.log(data)
+    }
+
+    //if (data['eeg'] != undefined && data != undefined) {
+    //  console.log(data)
+    //}    
+=======
     // pow: band data
     // using this to interpret sleep
     // needs to be stored in sets for analysis
@@ -216,14 +251,6 @@ var run_socket = (socket, streams) => {
       update_met(data)
     }
 
-    // eeg: health metrics (stress, excitement, etc)
-    // using this to associate with sleep
-    // needs to be stored in sets for analysis
-    if (data['eeg'] != undefined && data != undefined) {
-      eeg_data.push(data)
-      update_eeg(data)
-    }
-
     // mot: motion data
     // using this to look pretty/stand in for our lack of real-time eeg
     // needs to trigger an update event all the time
@@ -234,5 +261,6 @@ var run_socket = (socket, streams) => {
 
   socket.onclose = function(event) {
     console.log('socket closed!')
+>>>>>>> master:socket/emotiv_socket.js
   }
 }
