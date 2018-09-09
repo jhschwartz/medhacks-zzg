@@ -20,7 +20,7 @@
     padding-top: 40px;
 }
 
-h1 {
+.default_h1 {
     font-size: 36px;
     font-weight: normal;
     color: white;
@@ -28,13 +28,17 @@ h1 {
     font-family: "Avenir Next", serif;
 }
 
-a {
+.default_a {
     text-decoration: none;
     background-color: none;
     color: white;
 }
+.default_a:hover{
+    text-decoration: none;
+	color: white;
+}
 
-button {
+.default_button {
     background-color: #7F98FF;
 	border: 2px solid white;
 	border-radius: 12px;
@@ -48,7 +52,7 @@ button {
     transition-duration: 0.4s;
 }
 
-button:hover{
+.default_button:hover{
 	opacity: 0.5;
 	color: black;
 }
@@ -71,7 +75,7 @@ button:hover{
     transform: translate(-50%, -40%);
 }
 
-.btn {
+.centerBtn {
     position: absolute;
     top: 60%;
     left: 50%;
