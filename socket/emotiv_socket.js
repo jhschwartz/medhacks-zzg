@@ -180,26 +180,30 @@ var run_socket = (socket, streams) => {
   }
 
   var process_data = data => {
-    pow = data['pow']
-    met = data['met']
-    mot = data['mot']
-
     // pow: band data
     // using this to interpret sleep
     // needs to be stored in sets for analysis
-    pow_data.push(pow)
-    update_pow(pow)
+    if (data['pow'] != undefined) {
+      var date = new Date()
+      data['time'] = date.getTime()
+      pow_data.push(data)
+      update_pow(data)
+    }
 
     // met: health metrics (stress, excitement, etc)
     // using this to associate with sleep
     // needs to be stored in sets for analysis
-    met_data.push(met)
-    update_met(met)
+    if (data['met'] != undefined && data != undefined) {
+      met_data.push(data)
+      update_met(data)
+    }
 
     // mot: motion data
     // using this to look pretty/stand in for our lack of real-time eeg
     // needs to trigger an update event all the time
-    update_mot(mot)
+    if (data['pow'] != undefined) {
+      update_mot(data)
+    }
   }
 
   socket.onclose = function(event) {

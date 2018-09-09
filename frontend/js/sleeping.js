@@ -9,8 +9,7 @@ $('#start-sleep-btn').click(function() {
     $('#start-sleep-btn').hide();
     $('#end-sleep-btn').show();
 
-    $('#time').stopwatch().stopwatch('start').css('text-color', 'black');
-
+    $('#time').stopwatch().stopwatch('start');
 });
 
 $('#end-sleep-btn').click(function() {
@@ -19,8 +18,8 @@ $('#end-sleep-btn').click(function() {
     $('#start-sleep-btn').show();
     $('#end-sleep-btn').hide();
 
-    $('#time').stopwatch().stopwatch('stop').css('text-color', 'orange');
-
+    $('#time').stopwatch().stopwatch('stop');
+    $('#time').html('00:00:00');
 })
 
 $(document).ready(function() {
