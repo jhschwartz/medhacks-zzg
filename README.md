@@ -22,3 +22,6 @@ Meet ZZG, your personalized, at-home sleep lab. ZZG provides tailored sleep hygi
   * Status quo data: Map that shows that sleep quality is lacking geographically 
   * Demonstrates need for ZZG 
   * App user geographical data: Show how user’s data compares to users around them 
+  
+# Preview
+Open `homepage.html` in `/frontend`
