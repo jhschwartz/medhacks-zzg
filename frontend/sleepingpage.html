@@ -30,34 +30,53 @@
 </head>
 
 <body>
-	<div class="content">
-		<h1 class="default_h1"> Time to Catch Some ZZG's... </h1><br>
-		<div class="row time-row">
+
+	<div id="sleeping_page" style="background-color: #293241">
+		<div class="content">
+			<h1 class="default_h1"> Time to Catch Some ZZG's... </h1><br>
+			<div class="row time-row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<h2 class="default_h1" id="time">00:00:00</h2>
+					</div>
+					<div class="col-md-4"></div>
+			</div>
+			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<h2 class="default_h1" id="time">00:00:00</h2>
+					<button class="btn btn-primary btn-lg sleep-btn mx-auto" id="start-sleep-btn"> Start Session </button>
+					<button class="btn btn-secondary btn-lg sleep-btn mx-auto" id="end-sleep-btn" target="./analysispage.html">End Session</button>
 				</div>
 				<div class="col-md-4"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<button class="btn btn-primary btn-lg sleep-btn mx-auto" id="start-sleep-btn"> Start Session </button>
-				<button class="btn btn-secondary btn-lg sleep-btn mx-auto" id="end-sleep-btn" target="./analysispage.html">End Session</button>
 			</div>
-			<div class="col-md-4"></div>
-		</div>
-		<p>
-		<div id="graph1" class="aGraph" style="width:1300px; height:300px;"></div>
-		</p>
-		<script src="js/sleepingWave.js"></script>
+			<p>
+			<div id="graph1" class="aGraph" style="width:1300px; height:300px;"></div>
+			</p>
+			<script src="js/sleepingWave.js"></script>
+		  </div>
+		
+	</div>
+	<div id="analysis_page" style="background-color: #7F98FF; height:100%; width:100%; position:fixed; padding:0; margin:0; top:0; left:0;">
+		<div class="center">
+		<h1>Your Sleep Session</h1><br>
+		<h3>Emotion Data</h3>
+		<div id="met_div" style="height:50%; width:50%; margin-bottom:50px; display:inline-block">
+  		</div>
+  		<h3>Brain Wave Data</h3>
+		<div id="pow_div" style="height:50%; width:50%; margin-bottom:50px; display:inline-block">
+  		</div>
 	  </div>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="../socket/emotiv_config.js" type="text/javascript"></script>
-	<script src="../data_center.js" type="text/javascript"></script>
-	<script src="../socket/emotiv_socket.js" type="text/javascript"></script>
-	<script src="js/motion.js" type="text/javascript"></script>
-	<script src="../vendor/jquery.stopwatch.js" type="text/javascript"></script>
-	<script src="js/sleeping.js" type="text/javascript"></script>
+	</div>
+
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="../socket/emotiv_config.js" type="text/javascript"></script>
+		<script src="../data_center.js" type="text/javascript"></script>
+		<script src="../socket/emotiv_socket.js" type="text/javascript"></script>
+		<script src="js/motion.js" type="text/javascript"></script>
+		<script src="../vendor/jquery.stopwatch.js" type="text/javascript"></script>
+		<script src="js/sleeping.js" type="text/javascript"></script>
+
 </body>
 </html>
