@@ -1,9 +1,10 @@
 var sleep_socket;
+var time_elapsed = 0.0;
 
 $('#start-sleep-btn').click(function() {
     // connect socket
     sleep_socket = new WebSocket('wss://emotivcortex.com:54321')
-    streams = ['met', 'pow']
+    streams = ['met', 'pow', 'eeg']
     run_socket(sleep_socket, streams);
 
     $('#start-sleep-btn').hide();
@@ -171,3 +172,7 @@ $(document).ready(function() {
     $('#end-sleep-btn').hide();
     $('#analysis_page').hide();
 });
+
+$('#time').bind('DOMSubtreeModified', function() {
+    time_elapsed = $(this).html()
+})
