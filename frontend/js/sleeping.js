@@ -3,7 +3,7 @@ var sleep_socket;
 $('#start-sleep-btn').click(function() {
     // connect socket
     sleep_socket = new WebSocket('wss://emotivcortex.com:54321')
-    streams = ['met', 'pow']
+    streams = ['met', 'pow', 'eeg']
     run_socket(sleep_socket, streams);
 
     $('#start-sleep-btn').hide();
