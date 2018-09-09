@@ -2,7 +2,7 @@ function fillTxtBoxes(){
     var hours = getHours();
     var dTxt = "";
     var rTxt = "";
-    var result = 0;
+    var result = parseInt(time_elapsed.split(':')[0]);
     for(var i = 0; i < 5; i++){
         result+=hours[i];
     }

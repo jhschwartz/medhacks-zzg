@@ -1,4 +1,5 @@
 var sleep_socket;
+var time_elapsed = 0.0;
 
 $('#start-sleep-btn').click(function() {
     // connect socket
@@ -27,3 +28,7 @@ $('#end-sleep-btn').click(function() {
 $(document).ready(function() {
     $('#end-sleep-btn').hide();
 });
+
+$('#time').bind('DOMSubtreeModified', function() {
+    time_elapsed = $(this).html()
+})
