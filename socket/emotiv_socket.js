@@ -78,7 +78,7 @@ var run_socket = (socket, streams) => {
         console.log('received update session')
         console.log(data)
         query_sessions()
-        break
+        // break
       case ID_QUERY_SESSIONS:
         console.log('received query session')
         console.log(data)
@@ -164,7 +164,7 @@ var run_socket = (socket, streams) => {
       "method": "updateSession",
       "params": {
         "_auth": token,
-        "status": "active"
+        "status": 'active'
       },
       "id": ID_UPDATE_SESSION
     }))
