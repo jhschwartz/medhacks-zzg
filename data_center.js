@@ -7,8 +7,23 @@ var met_data = []
 // ENABLED: this function is triggered everytime new mot data comes in.
 // the function triggers an update of the mot visualization on the frontend
 function update_mot(new_mot) {
-
-    
+    // trigger will depend on which page we are currently viewing
+    switch (current_page) {
+        case 'analysis':
+            // do mot update for analysis page
+            break;
+        case 'home':
+            // do mot update for home page
+            break;
+        case 'sleeping':
+            // do mot update for sleeping page
+            break;
+        case 'recommendations':
+            // do mot update for recommendations page
+            break;
+        default:
+            throw Error('current_page variables not set and caught properly!')
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////

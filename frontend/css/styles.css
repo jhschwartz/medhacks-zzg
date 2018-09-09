@@ -1,0 +1,21 @@
+.sleep-btn {
+    width: 100%;
+}
+
+.time-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#myVideo {
+    position: fixed;
+    right: -630px;
+    bottom: -300;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -999;
+}
+
+.content {
+    padding-top: 40px;
+}
