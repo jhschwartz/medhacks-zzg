@@ -1,3 +1,5 @@
+
+
 .sleep-btn {
     width: 100%;
 }
@@ -11,7 +13,7 @@
     position: fixed;
     right: -630px;
     bottom: -300;
-    min-width: 100%; 
+    min-width: 100%;
     min-height: 100%;
     z-index: -999;
 }
@@ -25,7 +27,9 @@
     font-weight: normal;
     color: white;
     text-align: center;
-    font-family: "Avenir Next", serif;
+    font-family: lato, sans-serif;
+    font-style: normal;
+    font-weight: 100;
 }
 
 .default_a {
@@ -44,11 +48,14 @@
 	border-radius: 12px;
 	color: white;
     font-size: 36px;
-    padding: 20px 50px;
+    padding: 20px;
+    margin: 10px;
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
-    font-family: "Avenir Next", serif;
+    font-family: lato, sans-serif;
+    font-style: normal;
+    font-weight: 100;
     transition-duration: 0.4s;
 }
 
@@ -77,8 +84,36 @@
 
 .centerBtn {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+
+body {
+    background-color: #7F98FF;
+    margin: 0;
+}
+
+.left{
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 0px;
+    font-size: 28px;
+}
+
+.center {
+    text-align: center;
+}
+
+.smallTxt {
+	border: 2px solid white;
+	margin: 0px 50px 20px 50px;
+	padding: 20px 40px;
+    text-align: left;
+    font-size: 22px;
+}
+
+.smallBtn {
+    font-size: 28px;
 }
