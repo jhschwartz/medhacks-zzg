@@ -184,6 +184,8 @@ var run_socket = (socket, streams) => {
     // using this to interpret sleep
     // needs to be stored in sets for analysis
     if (data['pow'] != undefined) {
+      var date = new Date()
+      data['time'] = date.getTime()
       pow_data.push(data)
       update_pow(data)
     }
