@@ -17,8 +17,9 @@ window.onload = function() {
   const ID_LICENSE_ACCEPT = 3
   const ID_QUERY_HEADSETS = 4
   const ID_CREATE_SESSION = 5
-  const ID_QUERY_SESSIONS = 6
-  const ID_SUBSCRIBE = 7
+  const ID_UPDATE_SESSION = 6
+  const ID_QUERY_SESSIONS = 7
+  const ID_SUBSCRIBE = 8
   const ID_OTHER = 999
 
   // Thanks SO user user3215378: https://stackoverflow.com/a/21394730/4176019
@@ -72,8 +73,12 @@ window.onload = function() {
       case ID_CREATE_SESSION:
         console.log('received create session')
         console.log(data)
-        query_sessions()
+        update_session()
         break
+      case ID_UPDATE_SESSION:
+        console.log('received update session')
+        console.log(data)
+        query_sessions()
       case ID_QUERY_SESSIONS:
         console.log('received query session')
         console.log(data)
@@ -153,6 +158,18 @@ window.onload = function() {
     }))
   }
 
+  function update_session() {
+    socket.send(JSON.stringify({
+      "jsonrpc": "2.0",
+      "method": "updateSession",
+      "params": {
+        "_auth": token,
+        "status": "active"
+      },
+      "id": ID_UPDATE_SESSION
+    }))
+  }
+
   function query_sessions() {
     socket.send(JSON.stringify({
       'jsonrpc': '2.0',
@@ -171,7 +188,7 @@ window.onload = function() {
       'id': ID_SUBSCRIBE,
       'params': {
         '_auth': token,
-        'streams': ['pow']
+        'streams': ['pow', 'eeg']
       }
     }))
   }
@@ -181,7 +198,13 @@ window.onload = function() {
   }
 
   var process_data = data => {
-    pow = data['pow']
-    // TODO: send to website
+
+    if (data['pow'] != undefined && data != undefined) {
+      console.log(data)
+    }
+
+    //if (data['eeg'] != undefined && data != undefined) {
+    //  console.log(data)
+    //}    
   }
 }
