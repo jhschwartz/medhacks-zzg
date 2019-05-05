@@ -1,3 +1,6 @@
+# Want help using a socket with EMOTIV EPOC+?
+https://gist.github.com/jhschwartz/f24f50bdf576f82f39fabe7df4328959
+
 # medhacks-zzg
 MedHacks 2018 Team ZZG
 
